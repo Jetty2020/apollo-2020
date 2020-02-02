@@ -13,6 +13,10 @@ import React from "react";
        language
        rating
      }
+     suggestions(id: $id) {
+       id
+       medium_cover_image
+     }
    }
  `;
 
@@ -28,7 +32,7 @@ color: white;
 
 const Column = styled.div`
 margin-left: 10px;
-width: 50%;
+width: 40%;
 `;
 
 const Title = styled.h1`
@@ -63,18 +67,12 @@ background-position: center center;
     <Container>
       <Column>
       <Title>{loading ? "Loading..." : data.movie.title}</Title>
-         {!loading && data.movie && (
-           <>
-             <Subtitle>
-               {data.movie.language} · {data.movie.rating}
-             </Subtitle>
-             <Description>{data.movie.description_intro}</Description>
-           </>
-         )}
+      <Subtitle>
+           {data?.movie?.language} · {data?.movie?.rating}
+         </Subtitle>
+         <Description>{data?.movie?.description_intro}</Description>
       </Column>
-      <Poster
-         bg={data && data.movie ? data.movie.medium_cover_image : ""}
-       ></Poster>
+      <Poster bg={data?.movie?.medium_cover_image}></Poster>
     </Container>
   );
  };
